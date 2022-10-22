@@ -25,4 +25,6 @@ Course.init(
     }
 );
 
+Course.sync()
+
 export default Course;

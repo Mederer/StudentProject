@@ -22,4 +22,6 @@ Student.init({
     modelName: "Student"
 });
 
+Student.sync();
+
 export default Student;

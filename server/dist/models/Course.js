@@ -22,4 +22,5 @@ Course.init({
     sequelize: db_1.default,
     modelName: "Course",
 });
+Course.sync();
 exports.default = Course;

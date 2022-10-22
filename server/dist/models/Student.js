@@ -23,4 +23,5 @@ Student.init({
     sequelize: db_1.default,
     modelName: "Student"
 });
+Student.sync();
 exports.default = Student;

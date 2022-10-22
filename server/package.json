@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "startDev": "nodemon ./dist/app.js"
+    "startDev": "nodemon ./dist/app.js",
+    "tsWatch": "tsc -w"
   },
   "author": "",
   "license": "ISC",
