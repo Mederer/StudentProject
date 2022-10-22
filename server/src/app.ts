@@ -12,7 +12,7 @@ app.use(json());
 
 // Check that the API key is present.
 app.use((req: Request, res: Response, next: NextFunction) => {
-    const key = req.get("Api-Key");
+    const key: string | undefined = req.get("Api-Key");
 
     if(!key || key !== process.env.KEY){
         res.status(401).json({
