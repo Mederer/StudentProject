@@ -35,16 +35,20 @@ const app = (0, express_1.default)();
 // Middleware
 app.use((0, express_1.json)());
 // Check that the API key is present.
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     const key: string | undefined = req.get("Api-Key");
+//     if(!key || key !== process.env.KEY){
+//         res.status(401).json({
+//             message: "Unauthorized",
+//         })
+//     }else{
+//         next();
+//     }
+// })
+// Enable CORS
 app.use((req, res, next) => {
-    const key = req.get("Api-Key");
-    if (!key || key !== process.env.KEY) {
-        res.status(401).json({
-            message: "Unauthorized"
-        });
-    }
-    else {
-        next();
-    }
+    res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND);
+    next();
 });
 // Routers
 app.use("/students", studentRoutes_1.default);

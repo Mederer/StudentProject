@@ -1,4 +1,4 @@
-import sequelize from "./db";
+import sequelize from "../db/db";
 import { Model, DataTypes } from "sequelize";
 
 class Course extends Model {
@@ -24,5 +24,7 @@ Course.init(
         modelName: "Course",
     }
 );
+
+Course.sync()
 
 export default Course;

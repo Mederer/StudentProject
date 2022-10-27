@@ -1,6 +1,5 @@
 import express from "express";
 import * as CourseController from "../controllers/courseController";
-
 const courseRouter = express.Router();
 
 courseRouter.get("/", CourseController.getCourses);

@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "./db";
+import sequelize from "../db/db";
 
 class Student extends Model{
     declare id: number;
@@ -21,5 +21,7 @@ Student.init({
     sequelize,
     modelName: "Student"
 });
+
+Student.sync();
 
 export default Student;

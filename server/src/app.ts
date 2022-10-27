@@ -11,16 +11,22 @@ const app: Express = express();
 app.use(json());
 
 // Check that the API key is present.
-app.use((req: Request, res: Response, next: NextFunction) => {
-    const key = req.get("Api-Key");
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     const key: string | undefined = req.get("Api-Key");
 
-    if(!key || key !== process.env.KEY){
-        res.status(401).json({
-            message: "Unauthorized"
-        })
-    }else{
-        next();
-    }
+//     if(!key || key !== process.env.KEY){
+//         res.status(401).json({
+//             message: "Unauthorized",
+//         })
+//     }else{
+//         next();
+//     }
+// })
+
+// Enable CORS
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND as string);
+    next();
 })
 
 // Routers
