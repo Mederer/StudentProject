@@ -4,6 +4,8 @@ import { Model, DataTypes } from "sequelize";
 class Course extends Model {
     declare id: number;
     declare name: string;
+    declare code: string;
+    declare capacity: number;
 }
 
 Course.init(
@@ -18,6 +20,14 @@ Course.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        code: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        capacity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
     },
     {
         sequelize,
@@ -25,6 +35,6 @@ Course.init(
     }
 );
 
-Course.sync()
+Course.sync();
 
 export default Course;

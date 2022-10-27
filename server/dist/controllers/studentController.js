@@ -44,13 +44,16 @@ const getStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getStudent = getStudent;
 const createStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const name = req.body.name;
-    if (!name) {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    if ((!firstname || !lastname || !email || !phone) || !validateParams(firstname, lastname, email, phone)) {
         res.status(400).json({
             message: "Bad parameters",
         });
     }
-    const student = yield Student_1.default.create({ name });
+    const student = yield Student_1.default.create({ firstname, lastname, email, phone });
     res.status(201).json({ student });
 });
 exports.createStudent = createStudent;
@@ -70,7 +73,19 @@ const deleteStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.deleteStudent = deleteStudent;
 const updateStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
-    const name = req.body.name;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    if (!firstname ||
+        !lastname ||
+        !email ||
+        !phone) {
+        console.log(phone);
+        return res.status(400).json({
+            message: "Bad parameters."
+        });
+    }
     const student = yield Student_1.default.findByPk(id);
     if (!student) {
         res.status(404).json({
@@ -78,9 +93,15 @@ const updateStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     else {
-        student.name = name;
+        student.firstname = firstname;
+        student.lastname = lastname;
+        student.email = email;
+        student.phone = phone;
         yield student.save();
         res.status(200).json({ student });
     }
 });
 exports.updateStudent = updateStudent;
+const validateParams = (firstname, lastname, email, phone) => {
+    return true;
+};

@@ -29,27 +29,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const express_1 = __importStar(require("express"));
+const cors = require("cors");
 const studentRoutes_1 = __importDefault(require("./routes/studentRoutes"));
 const courseRoutes_1 = __importDefault(require("./routes/courseRoutes"));
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, express_1.json)());
-// Check that the API key is present.
-// app.use((req: Request, res: Response, next: NextFunction) => {
-//     const key: string | undefined = req.get("Api-Key");
-//     if(!key || key !== process.env.KEY){
-//         res.status(401).json({
-//             message: "Unauthorized",
-//         })
-//     }else{
-//         next();
-//     }
-// })
-// Enable CORS
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND);
-    next();
-});
+app.use(cors());
 // Routers
 app.use("/students", studentRoutes_1.default);
 app.use("/courses", courseRoutes_1.default);

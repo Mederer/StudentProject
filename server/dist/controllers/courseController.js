@@ -41,13 +41,15 @@ const getCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getCourse = getCourse;
 const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const name = req.body.name;
-    if (!name) {
+    const code = req.body.code;
+    const capacity = parseInt(req.body.capacity);
+    if (!name || !code || !capacity) {
         res.status(400).json({
             message: "Bad parameters",
         });
     }
     else {
-        const course = yield Course_1.default.create({ name });
+        const course = yield Course_1.default.create({ name, code, capacity });
         res.status(201).json({ course });
     }
 });

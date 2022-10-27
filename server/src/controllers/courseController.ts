@@ -27,13 +27,15 @@ export const getCourse = async (req: Request, res: Response) => {
 
 export const createCourse = async (req: Request, res: Response) => {
     const name: string = req.body.name;
+    const code: string = req.body.code;
+    const capacity: number = parseInt(req.body.capacity);
 
-    if (!name) {
+    if (!name || !code || !capacity) {
         res.status(400).json({
             message: "Bad parameters",
         });
     } else {
-        const course: Course = await Course.create({ name });
+        const course: Course = await Course.create({ name, code, capacity });
         res.status(201).json({ course });
     }
 };

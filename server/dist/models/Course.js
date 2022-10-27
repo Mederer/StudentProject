@@ -18,6 +18,14 @@ Course.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    code: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    capacity: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
 }, {
     sequelize: db_1.default,
     modelName: "Course",

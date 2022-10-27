@@ -2,32 +2,14 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import express, { json, Express, Request, Response, NextFunction } from "express";
+const cors = require("cors");
 import studentRouter from "./routes/studentRoutes";
 import courseRouter from "./routes/courseRoutes";
-
 const app: Express = express();
 
 // Middleware
 app.use(json());
-
-// Check that the API key is present.
-// app.use((req: Request, res: Response, next: NextFunction) => {
-//     const key: string | undefined = req.get("Api-Key");
-
-//     if(!key || key !== process.env.KEY){
-//         res.status(401).json({
-//             message: "Unauthorized",
-//         })
-//     }else{
-//         next();
-//     }
-// })
-
-// Enable CORS
-app.use((req: Request, res: Response, next: NextFunction) => {
-    res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND as string);
-    next();
-})
+app.use(cors());
 
 // Routers
 app.use("/students", studentRouter);
