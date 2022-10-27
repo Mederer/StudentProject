@@ -42,4 +42,5 @@ Student.init(
 
 Student.sync();
 
+
 export default Student;
