@@ -11,8 +11,7 @@ export default function Home() {
             </Head>
             <h1>Student Manager</h1>
             <p>
-                This is an app designed to manage student enrolments in a
-                course.
+                This is an app designed to manage student enrolments in courses.
             </p>
         </div>
     );
