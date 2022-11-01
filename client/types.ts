@@ -7,3 +7,12 @@ export interface Student {
     createdAt: string,
     updatedAt: string
 }
+
+export interface Course {
+    id: number,
+    name: string,
+    capacity: number,
+    code: string,
+    createdAt: string,
+    updatedAt: string
+}

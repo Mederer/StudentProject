@@ -15,3 +15,13 @@ p {
     margin: 2rem auto;
 }
 
+.btn {
+    padding: 1.2rem 2rem;
+    background-color: #ff8906;
+    color: #fffffe;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}

@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import Student from "../models/Student";
 
-
-
 export const getStudents = async (req: Request, res: Response) => {
     res.json(await Student.findAll());
 };
@@ -11,7 +9,7 @@ export const getStudent = async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.id);
 
     if (!id) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Bad parameters",
         });
     }

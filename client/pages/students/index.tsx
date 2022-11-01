@@ -2,9 +2,14 @@ import { GetStaticProps } from "next";
 import React from "react";
 import StudentList from "../../components/student/StudentList";
 import { Student } from "../../types";
+import Head from "next/head";
 
 const AllStudents = (props: {students: Student[]}) => {
     return <>
+    <Head key={"all-student-head"}>
+        <title>All Students</title>
+        
+    </Head>
         <h1>All Students</h1>
         <p>The following is a list of all students registered in the system.</p>
         <StudentList students={props.students} />

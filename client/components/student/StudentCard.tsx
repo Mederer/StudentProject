@@ -4,7 +4,7 @@ import { Student } from "../../types";
 const StudentCard = (props: { student: Student }) => {
     return (
         <div className={styles.card}>
-            <li className={styles.studentFields} key={props.student.id}>
+            <li className={styles.studentFields}>
                 <div className="student-field">{props.student.firstname}</div>
                 <div className="student-field">{props.student.lastname}</div>
                 <div className="student-field">{props.student.email}</div>

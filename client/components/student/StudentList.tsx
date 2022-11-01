@@ -8,12 +8,10 @@ const StudentList = (props: { students: Student[]}) => {
   return (
     <ul className={styles.studentList}>
         {props.students.map(student => (
-            <StudentCard student={student} />
+            <StudentCard key={student.id} student={student} />
         ))}
     </ul>
   )
 }
-
-
 
 export default StudentList

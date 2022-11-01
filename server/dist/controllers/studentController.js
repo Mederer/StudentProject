@@ -21,7 +21,7 @@ exports.getStudents = getStudents;
 const getStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
     if (!id) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Bad parameters",
         });
     }
