@@ -1,41 +1,32 @@
-import useSWR from "swr";
-import { useRouter } from "next/router";
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { Course } from "../../types";
 
-const CourseDetails = () => {
-    const router = useRouter();
-    const courseId = router.query.id;
-    const { data, error } = useSWR(
-        `http://localhost:3000/courses/${courseId}`,
-        fetcher
-    );
-
-    console.log(data)
-
-    if(error){
-        return (
-            <h1>An error has occured</h1>
-        )
-    }
-
-    if(!data){
-        console.log(data);
-        return(
-            <h1>Loading...</h1>
-        )
-    }
+const CourseDetails = (props: {course: Course}) => {
+    const createdAt = new Date(props.course.createdAt);
+    const updatedAt = new Date(props.course.updatedAt);
 
     return (
         <>
             <h1>Course Details</h1>
-            <div>ID: {data.course.id}</div>
-            <div>Name: {data.course.name}</div>
-            <div>Code: {data.course.code.toUpperCase()}</div>
-            <div>Capacity: {data.course.capacity}</div>
-            <div>Created At: {data.course.createdAt}</div>
-            <div>Updated At: {data.course.updatedAt}</div>
+            <div>ID: {props.course.id}</div>
+            <div>Name: {props.course.name}</div>
+            <div>Code: {props.course.code.toUpperCase()}</div>
+            <div>Capacity: {props.course.capacity}</div>
+            <div>Created At: {`${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`}</div>
+            <div>Updated At: {`${updatedAt.toLocaleDateString()} ${updatedAt.toLocaleTimeString()}`}</div>
         </>
     );
 };
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+    const id = context.query.id
+    const res = await fetch("http://localhost:3000/courses/" + id);
+    const jsonRes = await res.json();
+    return {
+        props: {
+            course: jsonRes.course
+        }
+    }
+}
 
 export default CourseDetails;

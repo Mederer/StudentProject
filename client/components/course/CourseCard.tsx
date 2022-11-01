@@ -1,10 +1,12 @@
 import { Course } from "../../types";
 import styles from "../../styles/Courses.module.css";
-import Router from "next/router";
+import {useRouter} from "next/router";
 
 const CourseCard = (props: { course: Course }) => {
+    const router = useRouter();
+
     const handleClick = (event: any) => {
-        Router.push(`courses/${props.course.id}`)
+        router.push(`courses/${props.course.id}`)
     }
     return (
         <li className={styles.courseItem} key={props.course.id}>
